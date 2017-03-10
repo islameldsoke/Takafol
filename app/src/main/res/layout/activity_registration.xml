@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.moham.takafol.Registration">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/takaful_splash"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="مستخدم جديد"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:layout_margin="5dp"/>
+
+    <EditText
+        android:id="@+id/fnameReg"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittextdrwable"
+        android:gravity="center"
+        android:hint="الاسم الأول"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/blackColor"
+        android:textSize="13sp"/>
+
+    <EditText
+        android:id="@+id/lnameReg"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittextdrwable"
+        android:gravity="center"
+        android:hint="الاسم الأخير"
+        android:textColor="@color/blackColor"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textSize="13sp" />
+
+
+
+
+
+    <EditText
+        android:id="@+id/emailReg"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittextdrwable"
+        android:gravity="center"
+        android:hint="البريد الالكتروني"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/blackColor"
+        android:textSize="13sp"/>
+
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:hint="كلمه المرور"
+        android:id="@+id/passwordReg"
+        android:inputType="textPassword"
+        android:layout_margin="5dp"
+        android:layout_gravity="center_horizontal"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/blackColor"
+        android:textSize="13sp"
+        android:background="@drawable/edittextdrwable"/>
+    <EditText
+        android:id="@+id/phoneReg"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittextdrwable"
+        android:gravity="center"
+        android:inputType="phone"
+        android:hint="رقم الموبايل"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/blackColor"
+        android:textSize="13sp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ذكر" />
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="انثي" />
+    </RadioGroup>
+
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:id="@+id/regBtn"
+        android:text="تسجيل"
+        android:background="@drawable/buttondrwable"
+        />
+</LinearLayout>
+</ScrollView>

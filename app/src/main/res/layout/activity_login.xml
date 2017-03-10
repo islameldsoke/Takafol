@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.example.moham.takafol.LoginActivity">
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/takaful_splash"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/emailLogin"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittextdrwable"
+        android:gravity="center"
+        android:hint="البريد الالكتروني"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/blackColor"
+        android:textSize="13sp"/>
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:hint="كلمه المرور"
+        android:id="@+id/passwordLogin"
+        android:inputType="textPassword"
+        android:layout_margin="5dp"
+        android:layout_gravity="center_horizontal"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/blackColor"
+        android:textSize="13sp"
+        android:background="@drawable/edittextdrwable"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تذكرني"
+        android:layout_marginRight="22dp"
+        android:layout_gravity="right"
+        />
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:id="@+id/loginBtn"
+        android:background="@drawable/buttondrwable"
+        android:text="تسجيل الدخول"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/newMemberBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:background="@color/colorPrimary"
+            android:text="عضو جديد؟"
+            android:onClick="newMember"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/forgetPasswordBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimary"
+            android:text="نسيت كلمة المرور؟" />
+
+    </LinearLayout>
+</LinearLayout>
