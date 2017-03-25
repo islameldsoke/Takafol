@@ -1,5 +1,6 @@
 package com.example.moham.takafol;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 import com.example.moham.takafol.Adapters.ViewPagerAdapter;
 import com.example.moham.takafol.Fragments.HomeFragment;
@@ -196,6 +198,12 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 
                         Toast.makeText(getBaseContext(),"position selected is"+position,Toast.LENGTH_LONG).show();
+
+                        switch(position)
+                        {
+                            case 3:
+                                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                        }
                        return true;
                     }
                 })

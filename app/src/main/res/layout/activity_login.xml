@@ -53,8 +53,8 @@
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
-        android:id="@+id/loginBtn"
         android:background="@drawable/buttondrwable"
+        android:onClick="Login"
         android:text="تسجيل الدخول"
         />
 
