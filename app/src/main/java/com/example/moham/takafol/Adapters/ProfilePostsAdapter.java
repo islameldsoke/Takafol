@@ -31,8 +31,8 @@ public class ProfilePostsAdapter extends RecyclerView.Adapter<ProfilePostsAdapte
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view=layoutInflater.from(parent.getContext()).inflate(R.layout.post_row,parent,false);
-        MyViewHolder myViewHolder=new MyViewHolder(view);
+        View view = layoutInflater.from(parent.getContext()).inflate(R.layout.post_row, parent, false);
+        MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
 
@@ -50,34 +50,36 @@ public class ProfilePostsAdapter extends RecyclerView.Adapter<ProfilePostsAdapte
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView user_id;
         TextView post_content;
-        ImageButton support , comment , share;
+        ImageButton support, comment, share;
+
         public MyViewHolder(View itemView) {
             super(itemView);
-            user_id = (TextView)itemView.findViewById(R.id.USERname);
-            post_content = (TextView)itemView.findViewById(R.id.postContent);
-            support = (ImageButton)itemView.findViewById(R.id.Support);
-            comment = (ImageButton)itemView.findViewById(R.id.comment);
-            share = (ImageButton)itemView.findViewById(R.id.share);
+            user_id = (TextView) itemView.findViewById(R.id.USERname);
+            post_content = (TextView) itemView.findViewById(R.id.postContent);
+            support = (ImageButton) itemView.findViewById(R.id.Support);
+            comment = (ImageButton) itemView.findViewById(R.id.comment);
+            share = (ImageButton) itemView.findViewById(R.id.share);
 
             support.setOnClickListener(this);
             comment.setOnClickListener(this);
-            share.setOnClickListener(this);        }
+            share.setOnClickListener(this);
+        }
 
         @Override
         public void onClick(View view) {
 
-            if(view.getId() == support.getId()){
+            if (view.getId() == support.getId()) {
 
-                Toast.makeText(view.getContext(), "Support Clicked " , Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Support Clicked ", Toast.LENGTH_SHORT).show();
 
-            }else if (view.getId() == comment.getId()){
-                Toast.makeText(view.getContext(), "Comment Clicked " , Toast.LENGTH_SHORT).show();
+            } else if (view.getId() == comment.getId()) {
+                Toast.makeText(view.getContext(), "Comment Clicked ", Toast.LENGTH_SHORT).show();
 
-            }else if (view.getId() == share.getId()){
-                Toast.makeText(view.getContext(), "Share Clicked " , Toast.LENGTH_SHORT).show();
+            } else if (view.getId() == share.getId()) {
+                Toast.makeText(view.getContext(), "Share Clicked ", Toast.LENGTH_SHORT).show();
 
 
             }
