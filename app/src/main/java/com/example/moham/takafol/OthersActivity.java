@@ -1,13 +1,14 @@
 package com.example.moham.takafol;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.example.moham.takafol.Adapters.ProfilePostsAdapter;
 import com.example.moham.takafol.Models.Post;
 
@@ -33,7 +35,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity {
+public class OthersActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Post> posts_list = new ArrayList<>();
     TextView posts_num;
@@ -46,12 +48,14 @@ public class ProfileActivity extends AppCompatActivity {
     TextView phone;
     ImageView cover;
     CircleImageView circleImageView;
+    String otherUser_id;
+    String user_id;
+    Button followBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_content);
-
+        setContentView(R.layout.activity_others_);
 
         posts_num = (TextView) findViewById(R.id.posts_num);
         follower_num = (TextView) findViewById(R.id.followers_num);
@@ -63,10 +67,19 @@ public class ProfileActivity extends AppCompatActivity {
         email = (TextView) findViewById(R.id.emailUser);
         cover = (ImageView) findViewById(R.id.coverUser);
         circleImageView = (CircleImageView) findViewById(R.id.profile_image);
+        followBtn = (Button) findViewById(R.id.followBtn);
+
+        user_id = getSharedPreferences("user_id", 0).getString("user_id", "");
+
+        Intent intent = getIntent();
+        otherUser_id = intent.getStringExtra("user_id");
+        Toast.makeText(this,otherUser_id,Toast.LENGTH_LONG).show();
+        fetchOthersProvile();
+    }
 
 
-        String user_id = getSharedPreferences("user_id", 0).getString("user_id", "");
-        String url_num = "http://takaful.16mb.com/Api.php?INFOUID=" + user_id;
+    public void fetchOthersProvile(){
+        String url_num = "http://takaful.16mb.com/Api.php?INFOUID=" + otherUser_id;
         StringRequest num_request = new StringRequest(Request.Method.GET, url_num, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -93,10 +106,10 @@ public class ProfileActivity extends AppCompatActivity {
                         bio.setText(bioStr);
                         address.setText(addressStr);
                         phone.setText(phoneStr);
-                        Glide.with(ProfileActivity.this).load("http://takaful.16mb.com/Api.php" + pic_url)
+                        Glide.with(OthersActivity.this).load("http://takaful.16mb.com/Api.php" + pic_url)
                                 .placeholder(R.drawable.frankenstein)
                                 .dontAnimate().into(circleImageView);
-                        Glide.with(ProfileActivity.this).load("http://takaful.16mb.com/Api.php" + cover_url)
+                        Glide.with(OthersActivity.this).load("http://takaful.16mb.com/Api.php" + cover_url)
                                 .placeholder(R.drawable.cover).into(cover);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -106,23 +119,23 @@ public class ProfileActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ProfileActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(OthersActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });
         Volley.newRequestQueue(this).add(num_request);
 
 
-        String url_posts = "http://takaful.16mb.com/Api.php?PUID=" + user_id;
+        String url_posts = "http://takaful.16mb.com/Api.php?PUID=" + otherUser_id;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url_posts, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(ProfileActivity.this, response, Toast.LENGTH_LONG).show();
+                Toast.makeText(OthersActivity.this, response, Toast.LENGTH_LONG).show();
 
                 if (response != null) {
-                    recyclerView = (RecyclerView) ProfileActivity.this.findViewById(R.id.profileRecycler);
+                    recyclerView = (RecyclerView) OthersActivity.this.findViewById(R.id.profileRecycler);
                     RecyclerView.LayoutManager layoutManager = new
-                            LinearLayoutManager(ProfileActivity.this, LinearLayoutManager.VERTICAL, false);
+                            LinearLayoutManager(OthersActivity.this, LinearLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(layoutManager);
                     try {
                         JSONArray posts = new JSONArray(response);
@@ -133,7 +146,7 @@ public class ProfileActivity extends AppCompatActivity {
                             String post_content = c.getString("content");
                             String postDate = c.getString("post_date");
                             String postId = c.getString("post_id");
-                           String user_id = c.getString("user_id");
+                            String user_id = c.getString("user_id");
                             String support_numbers = c.getString("supporters_number");
                             String share_number = c.getString("shares_number");
                             String comment_number = c.getString("comments_number");
@@ -155,7 +168,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             posts_list.add(post);
                         }
-                        recyclerView.setAdapter(new ProfilePostsAdapter(posts_list, ProfileActivity.this));
+                        recyclerView.setAdapter(new ProfilePostsAdapter(posts_list, OthersActivity.this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -166,22 +179,49 @@ public class ProfileActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ProfileActivity.this, "error in posts", Toast.LENGTH_LONG).show();
+                Toast.makeText(OthersActivity.this, "error in posts", Toast.LENGTH_LONG).show();
 
-                Toast.makeText(ProfileActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(OthersActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
         // stringRequest.setShouldCache(false);
-        Volley.newRequestQueue(ProfileActivity.this).add(stringRequest);
-
+        Volley.newRequestQueue(OthersActivity.this).add(stringRequest);
     }
+    public void follow(View view) {
+        String url = "http://takaful.16mb.com/Api.php?";
+        StringRequest sendPostRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response != null) {
+                    if (response.contains("true")) {
+                        Toast.makeText(OthersActivity.this, "تم المتابعه", Toast.LENGTH_LONG).show();
+                        followBtn.setText("الغاء المتابعه");
+                        //followBtn.setBackground(R.drawable.buttondrwable);
 
+                    } else if (response.contains("deleted")){
+                        Toast.makeText(OthersActivity.this, "تم الغاء المتابعه", Toast.LENGTH_LONG).show();
+                        followBtn.setText("متابعه");
+                    }
+                    else {
+                        Toast.makeText(OthersActivity.this, "حدث خطأ", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(OthersActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("FOLLOWER_ID", user_id);
+                map.put("FOLLOWED_ID",otherUser_id );
 
-    public void postBtn(View view) {
-        startActivity(new Intent(this, PostActivity.class));
-    }
-
-    public void EditProfile(View view) {
-        startActivity(new Intent(this, EditProfileActivity.class));
+                return map;
+            }
+        };
+        Volley.newRequestQueue(this).add(sendPostRequest);
     }
 }

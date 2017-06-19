@@ -29,9 +29,21 @@ public class Post {
     @SerializedName("user_id")
     @Expose
     private String userId;
+    @SerializedName("user_name")
+    @Expose
+    private String userName;
     @SerializedName("image")
     @Expose
     private String image;
+    private String like_status;
+
+    public String getLike_status() {
+        return like_status;
+    }
+
+    public void setLike_status(String like_status) {
+        this.like_status = like_status;
+    }
 
     public String getPostId() {
         return postId;
@@ -95,5 +107,13 @@ public class Post {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

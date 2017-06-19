@@ -3,6 +3,7 @@
     package="com.example.moham.takafol">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,16 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".Registration" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".PostActivity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity
+            android:name=".commentActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".notificationContent" />
+        <activity android:name=".OthersActivity"></activity>
     </application>
 
 </manifest>

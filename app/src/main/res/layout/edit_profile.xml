@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/cover_image_edit"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cover" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image_edit"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/frankenstein"
+                app:civ_border_color="#FFeeeeee"
+                app:civ_border_width="2dp" />
+        </FrameLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttondrwable"
+            android:drawableLeft="@drawable/camera_icon"
+            android:gravity="center"
+            android:onClick="changeProfilePic"
+            android:padding="10dp"
+            android:text="تعديل الصوره الشخصيه"
+            android:textAlignment="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/buttondrwable"
+            android:drawableLeft="@drawable/camera_icon"
+            android:gravity="center"
+            android:onClick="changeCover"
+            android:padding="10dp"
+            android:text="تعديل صوره الغلاف"
+            android:textAlignment="center" />
+
+
+        <EditText
+            android:id="@+id/bioEdit"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittextdrwable"
+            android:gravity="center"
+            android:hint="السيره الذاتيه"
+            android:textColor="@color/blackColor"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/phoneEdit"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittextdrwable"
+            android:gravity="center"
+            android:hint="رقم الموبايل"
+            android:inputType="phone"
+            android:textColor="@color/blackColor"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/addressEdit"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittextdrwable"
+            android:gravity="center"
+            android:hint="العنوان"
+            android:textColor="@color/blackColor"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textSize="13sp" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttondrwable"
+            android:gravity="center"
+            android:onClick="Edit"
+            android:padding="10dp"
+            android:text="تعديل"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+</ScrollView>

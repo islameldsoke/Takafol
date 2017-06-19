@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.moham.takafol.commentActivity">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/comment_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollHorizontally="false" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ECEFF1"
+
+        >
+
+        <Button
+
+            android:id="@+id/commentB"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="305dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/roundbutton"
+            android:drawableTop="@drawable/send"
+            android:padding="10dp"
+            android:scaleType="fitCenter" />
+
+        <EditText
+            android:id="@+id/commentC"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:hint="comment"
+            android:maxLength="2000"
+            android:maxLines="4"
+            android:textColor="@color/blackColor"
+            android:textColorHint="@color/colorPrimaryDark" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
