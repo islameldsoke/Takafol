@@ -36,6 +36,42 @@ public class Post {
     @Expose
     private String image;
     private String like_status;
+    private String needed_money;
+    private String donated_money;
+    private String user_email;
+    private String user_phone;
+
+    public String getNeeded_money() {
+        return needed_money;
+    }
+
+    public void setNeeded_money(String needed_money) {
+        this.needed_money = needed_money;
+    }
+
+    public String getDonated_money() {
+        return donated_money;
+    }
+
+    public void setDonated_money(String donated_money) {
+        this.donated_money = donated_money;
+    }
+
+    public String getUser_email() {
+        return user_email;
+    }
+
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone;
+    }
 
     public String getLike_status() {
         return like_status;

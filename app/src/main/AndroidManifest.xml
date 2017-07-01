@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moham.takafol">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -32,7 +33,9 @@
             android:name=".commentActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".notificationContent" />
-        <activity android:name=".OthersActivity"></activity>
+        <activity android:name=".OthersActivity" />
+        <activity android:name=".TrendsActivity" />
+        <activity android:name=".SuggestToFollow"></activity>
     </application>
 
 </manifest>

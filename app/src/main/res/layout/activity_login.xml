@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,10 +20,10 @@
 
     <EditText
         android:id="@+id/emailLogin"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:background="@drawable/edittextdrwable"
         android:gravity="center"
         android:hint="البريد الالكتروني"
@@ -29,13 +32,13 @@
         android:textSize="13sp"/>
 
     <EditText
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:gravity="center"
         android:hint="كلمه المرور"
         android:id="@+id/passwordLogin"
         android:inputType="textPassword"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:layout_gravity="center_horizontal"
         android:textColorHint="@color/colorPrimaryDark"
         android:textColor="@color/blackColor"
@@ -50,10 +53,10 @@
         android:layout_gravity="right"
         />
     <Button
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:background="@drawable/buttondrwable"
         android:onClick="Login"
         android:text="تسجيل الدخول"
@@ -89,3 +92,4 @@
 
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

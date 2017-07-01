@@ -30,7 +30,7 @@
 
     <EditText
         android:id="@+id/fnameReg"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
@@ -43,7 +43,7 @@
 
     <EditText
         android:id="@+id/lnameReg"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
@@ -60,7 +60,7 @@
 
     <EditText
         android:id="@+id/emailReg"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
@@ -73,7 +73,7 @@
 
 
     <EditText
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:gravity="center"
         android:hint="كلمه المرور"
@@ -89,7 +89,7 @@
 
     <EditText
         android:id="@+id/phoneReg"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
@@ -124,7 +124,7 @@
 
     <EditText
         android:id="@+id/addressReg"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
@@ -137,7 +137,7 @@
 
     <Button
         android:onClick="SetDate"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
@@ -151,7 +151,7 @@
 
 
     <Button
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"

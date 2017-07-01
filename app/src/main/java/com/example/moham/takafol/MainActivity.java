@@ -60,18 +60,14 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         SetupViewPager(viewPager);
-
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
         tabLayout.getTabAt(0).setIcon(R.drawable.home_icon);
         tabLayout.getTabAt(1).setIcon(R.drawable.notifications_icon);
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
-
         searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
         searchView.setCursorDrawable(R.xml.my_cursor);
-
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -84,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -171,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
     @Override
     public void onBackPressed() {
         if (searchView.isSearchOpen()) {
@@ -181,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
 
     public void SetupProfileNavigationDrawer() {
         // Create the AccountHeader
@@ -243,6 +236,13 @@ public class MainActivity extends AppCompatActivity {
                         switch (position) {
                             case 3:
                                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                                break;
+                            case 4:
+                                startActivity(new Intent(MainActivity.this, TrendsActivity.class));
+                                break;
+                            case 5:
+                                startActivity(new Intent(MainActivity.this, SuggestToFollow.class));
+                                break;
                         }
                         return true;
                     }

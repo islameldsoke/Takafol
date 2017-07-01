@@ -52,6 +52,21 @@
                 android:textSize="13dp" />
 
         </LinearLayout>
+        <io.netopen.hotbitmapgg.library.view.RingProgressBar
+            android:id="@+id/progress_bar_2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="5dp"
+            app:max="100"
+            app:ringColor="@android:color/darker_gray"
+            app:ringProgressColor="@color/colorPrimary"
+            app:ringWidth="20dp"
+            app:style="STROKE"
+            app:textColor="@color/colorPrimary"
+            app:textIsShow="true"
+            app:textSize="16sp" />
     </LinearLayout>
 
 
@@ -142,6 +157,15 @@
             android:src="@drawable/share"
 
             />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/donate"
+            android:layout_weight="1"
+            android:src="@drawable/donation"
+            android:background="#fff"
+            android:scaleType="fitCenter"/>
 
 
     </LinearLayout>

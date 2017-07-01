@@ -22,6 +22,17 @@
         android:scrollHorizontally="false"
         android:textColor="@color/blackColor"
         android:textColorHint="@color/md_grey_400" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/donatedValue"
+        android:hint="ادخل القيمة المادية المقترحة لحل المشكلة"
+        android:inputType="number"
+        android:textColor="@color/blackColor"
+
+
+        android:textColorHint="@color/colorPrimaryDark"
+        />
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

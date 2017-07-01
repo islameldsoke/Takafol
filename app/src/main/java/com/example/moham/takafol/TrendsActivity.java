@@ -1,79 +1,57 @@
-package com.example.moham.takafol.Fragments;
+package com.example.moham.takafol;
 
-
-import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.moham.takafol.Adapters.HomeAdapter;
+import com.example.moham.takafol.Adapters.ProfilePostsAdapter;
 import com.example.moham.takafol.Models.Post;
-import com.example.moham.takafol.PostActivity;
-import com.example.moham.takafol.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
-public class HomeFragment extends Fragment {
+public class TrendsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    FloatingActionButton post;
     List<Post> posts_list = new ArrayList<>();
-    String user_id;
+    Toolbar toolbar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_trends);
 
-        post = (FloatingActionButton) view.findViewById(R.id.f1);
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), PostActivity.class));
-            }
-        });
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-       loadHome();
-        return view;
-    }
+        String user_id = getSharedPreferences("user_id", 0).getString("user_id", "");
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        new HomeAdapter(posts_list,getActivity()).clear(posts_list);
-//
-//    }
-
-    private void loadHome(){
-        user_id = getActivity().getSharedPreferences("user_id", 0).getString("user_id", "");
-
-        String url = "http://takaful.16mb.com/Api.php?HPUID=" + user_id;
+        String url = "http://takaful.16mb.com/Api.php?trend=1&&UID=" + user_id;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
+                Toast.makeText(TrendsActivity.this, response, Toast.LENGTH_LONG).show();
 
                 if (response != null) {
-                    recyclerView = (RecyclerView) getActivity().findViewById(R.id.recyclerView);
+                    recyclerView = (RecyclerView) findViewById(R.id.recyclerTrend);
                     RecyclerView.LayoutManager layoutManager = new
-                            LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                            LinearLayoutManager(TrendsActivity.this, LinearLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(layoutManager);
                     try {
                         JSONArray posts = new JSONArray(response);
@@ -81,7 +59,7 @@ public class HomeFragment extends Fragment {
                             JSONObject c = posts.getJSONObject(i);
                             String userImage = c.getString("user_image");
                             String userName = c.getString("user_name");
-                            String post_content = c.getString("content");
+                            String post_content = c.getString("post_content");
                             String postDate = c.getString("post_date");
                             String postId = c.getString("post_id");
                             String user_id = c.getString("user_id");
@@ -89,10 +67,6 @@ public class HomeFragment extends Fragment {
                             String share_number = c.getString("shares_number");
                             String comment_number = c.getString("comments_number");
                             String like_status = c.getString("like_status");
-                            String neededM = c.getString("needed_money");
-                            String donatedM = c.getString("donated_money");
-                            String user_email = c.getString("user_email");
-                            String user_phone = c.getString("user_phone");
 
                             Post post = new Post();
                             post.setContent(post_content);
@@ -105,16 +79,11 @@ public class HomeFragment extends Fragment {
                             post.setPostDate(postDate);
                             post.setPostId(postId);
                             post.setLike_status(like_status);
-                            post.setDonated_money(donatedM);
-                            post.setNeeded_money(neededM);
-                            post.setUser_email(user_email);
-                            post.setUser_phone(user_phone);
-                            Log.e("KH5", post.getDonated_money());
+                            Log.e("KH5", post.getLike_status());
 
                             posts_list.add(post);
-
                         }
-                        recyclerView.setAdapter(new HomeAdapter(posts_list, getActivity()));
+                        recyclerView.setAdapter(new HomeAdapter(posts_list, TrendsActivity.this));
 
 
                     } catch (JSONException e) {
@@ -126,11 +95,11 @@ public class HomeFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "error in posts", Toast.LENGTH_LONG).show();
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(TrendsActivity.this, "error in posts", Toast.LENGTH_LONG).show();
+                Toast.makeText(TrendsActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        Volley.newRequestQueue(getContext()).add(stringRequest);
+        Volley.newRequestQueue(TrendsActivity.this).add(stringRequest);
 
     }
 }

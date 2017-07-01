@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -21,14 +20,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-import com.example.moham.takafol.Models.Post;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PostActivity extends AppCompatActivity {
-    EditText postContent;
+    EditText postContent,donatedValue;
     String user_id;
     ImageView postImage;
 
@@ -39,6 +37,7 @@ public class PostActivity extends AppCompatActivity {
 
         user_id = getSharedPreferences("user_id", 0).getString("user_id", "");
         postContent = (EditText) findViewById(R.id.post);
+        donatedValue = (EditText)findViewById(R.id.donatedValue);
         postImage = (ImageView) findViewById(R.id.postImage);
     }
 
@@ -59,14 +58,16 @@ public class PostActivity extends AppCompatActivity {
     public void sendPost(View view) {
         String url = "http://takaful.16mb.com/Api.php";
         StringRequest sendPostRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
+                Toast.makeText(PostActivity.this,response.toString(), Toast.LENGTH_LONG).show();
                 if (response != null) {
                     if (response.contains("true")) {
-                        Toast.makeText(PostActivity.this, "تم النشر", Toast.LENGTH_LONG).show();
+                        Toast.makeText(PostActivity.this,response.toString(), Toast.LENGTH_LONG).show();
                         finish();
-                    } else {
-                        Toast.makeText(PostActivity.this, "لم يتم النشر", Toast.LENGTH_LONG).show();
+                    } else if(response.contains("false")){
+                        Toast.makeText(PostActivity.this, response.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -81,6 +82,8 @@ public class PostActivity extends AppCompatActivity {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("UID", user_id);
                 map.put("pcontent", postContent.getText().toString());
+                //changeHereمش شغالة
+                map.put("value",donatedValue.getText().toString());
                 try {
                     Bitmap postImageBitmap = ((GlideBitmapDrawable) postImage.getDrawable().getCurrent()).getBitmap();
                     map.put("post_image", ImageToString(postImageBitmap));
@@ -99,4 +102,6 @@ public class PostActivity extends AppCompatActivity {
         byte[] imgBytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgBytes, Base64.DEFAULT);
     }
+
+
 }
