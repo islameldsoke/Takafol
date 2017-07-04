@@ -1,18 +1,16 @@
 package com.example.moham.takafol;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -27,9 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -139,6 +135,13 @@ public class ProfileActivity extends AppCompatActivity {
                             String comment_number = c.getString("comments_number");
                             String post_img=c.getString("post_image");
                             String like_status=c.getString("like_status");
+                            String neededM = c.getString("needed_money");
+                            String donatedM = c.getString("donated_money");
+                            String user_email = c.getString("user_email");
+                            String user_phone = c.getString("user_phone");
+                            String trust_Status = c.getString("trust_status");
+                            String trust_number = c.getString("trust_number");
+                            String untrust_number = c.getString("untrust_number");
 
                             Post post = new Post();
                             post.setContent(post_content);
@@ -151,6 +154,14 @@ public class ProfileActivity extends AppCompatActivity {
                             post.setPostDate(postDate);
                             post.setPostId(postId);
                             post.setLike_status(like_status);
+                            post.setDonated_money(donatedM);
+                            post.setNeeded_money(neededM);
+                            post.setUser_email(user_email);
+                            post.setUser_phone(user_phone);
+                            post.setTrust_number(trust_number);
+                            post.setUntrust_number(untrust_number);
+                            post.setTrust_status(trust_Status);
+
                             Log.e("KH5",post.getLike_status());
 
                             posts_list.add(post);

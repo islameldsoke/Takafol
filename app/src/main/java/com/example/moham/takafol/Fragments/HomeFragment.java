@@ -93,6 +93,9 @@ public class HomeFragment extends Fragment {
                             String donatedM = c.getString("donated_money");
                             String user_email = c.getString("user_email");
                             String user_phone = c.getString("user_phone");
+                            String trust_Status = c.getString("trust_status");
+                            String trust_number = c.getString("trust_number");
+                            String untrust_number = c.getString("untrust_number");
 
                             Post post = new Post();
                             post.setContent(post_content);
@@ -109,6 +112,9 @@ public class HomeFragment extends Fragment {
                             post.setNeeded_money(neededM);
                             post.setUser_email(user_email);
                             post.setUser_phone(user_phone);
+                            post.setTrust_number(trust_number);
+                            post.setUntrust_number(untrust_number);
+                            post.setTrust_status(trust_Status);
                             Log.e("KH5", post.getDonated_money());
 
                             posts_list.add(post);

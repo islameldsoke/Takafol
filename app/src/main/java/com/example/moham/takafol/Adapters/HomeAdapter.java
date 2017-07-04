@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.example.moham.takafol.Models.Post;
 import com.example.moham.takafol.OthersActivity;
 import com.example.moham.takafol.R;
@@ -35,7 +39,6 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
 /**
  * Created by moham on 6/21/2017.
@@ -77,8 +80,31 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         //changeHere
         float neededM = Float.parseFloat(list.get(position).getNeeded_money().toString());
         float donatedM = Float.parseFloat(list.get(position).getDonated_money().toString());
-        float total = (donatedM / neededM) * 100;
-        holder.ring.setProgress( Math.round(total));
+        int total = (int)((donatedM * 100) / neededM);
+        Toast.makeText(context,total+"",Toast.LENGTH_LONG).show();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_id", 0);
+        final String UID = sharedPreferences.getString("user_id", "");
+
+        String vote_stat=list.get(position).getTrust_status().toString();
+        if (vote_stat.equals("1")){
+            holder.voteGroup.setVisibility(View.GONE);
+            holder.vote.setVisibility(View.GONE);
+            holder.trust.setVisibility(View.GONE);
+            holder.notTrust.setVisibility(View.GONE);
+            holder.votStext.setVisibility(View.VISIBLE);
+
+        }else if(vote_stat.equals("0")){
+            holder.votStext.setVisibility(View.GONE);
+        }else if(list.get(position).equals(UID)){
+            holder.voteGroup.setVisibility(View.GONE);
+            holder.vote.setVisibility(View.GONE);
+            holder.trust.setVisibility(View.GONE);
+            holder.notTrust.setVisibility(View.GONE);
+            holder.votStext.setVisibility(View.GONE);
+        }
+
+
+        holder.numberProgressBar.incrementProgressBy(total);
 
         Glide.with(context).load("http://takafull.000webhostapp.com/" + list.get(position).getImage())
                 .dontAnimate().placeholder(R.drawable.mdtp_done_background_color_dark)
@@ -98,10 +124,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView post_content, userName, date, commentsNumber, supportersNumber, sharesNumber;
+        TextView post_content, userName, date, commentsNumber, supportersNumber, sharesNumber,votStext;
         ImageButton support, comment, share, donate;
         CircleImageView userImg;
-        RingProgressBar ring;
+        //RingProgressBar ring;
+        NumberProgressBar numberProgressBar;
+        RadioGroup voteGroup ;
+        RadioButton trust ;
+        RadioButton notTrust;
+        Button vote;
+        boolean voteS;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +143,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             commentsNumber = (TextView) itemView.findViewById(R.id.commentnumber);
             supportersNumber = (TextView) itemView.findViewById(R.id.supportNumber);
             sharesNumber = (TextView) itemView.findViewById(R.id.sharesNumber);
+            voteGroup = (RadioGroup)itemView.findViewById(R.id.voteGroup);
+            trust = (RadioButton)itemView.findViewById(R.id.trust);
+            notTrust = (RadioButton)itemView.findViewById(R.id.notTrust);
+            vote = (Button)itemView.findViewById(R.id.vote);
+            votStext = (TextView)itemView.findViewById(R.id.votS);
+
+
 
             //changeHere
             donate = (ImageButton) itemView.findViewById(R.id.donate);
@@ -122,7 +161,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             share = (ImageButton) itemView.findViewById(R.id.share);
 
 //changeHere
-            ring = (RingProgressBar) itemView.findViewById(R.id.progress_bar_2);
+            numberProgressBar = (NumberProgressBar)itemView.findViewById(R.id.newProgress);
+           // ring = (RingProgressBar) itemView.findViewById(R.id.progress_bar_2);
 
 
             itemView.setOnClickListener(this);
@@ -131,6 +171,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             share.setOnClickListener(this);
             userName.setOnClickListener(this);
             donate.setOnClickListener(this);
+            trust.setOnClickListener(this);
+            notTrust.setOnClickListener(this);
+            vote.setOnClickListener(this);
+
         }
 
         @Override
@@ -290,13 +334,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
                                                     };
                                                     Volley.newRequestQueue(context).add(sendPostRequest);
 
-                                                    float neededM = Float.parseFloat(list.get(getAdapterPosition()).getNeeded_money().toString());
-                                                    float donatedM = Float.parseFloat(list.get(getAdapterPosition()).getDonated_money().toString());
-                                                    float total = (donatedM / neededM) * 100;
-                                                    int newTotal = Integer.parseInt(input.toString())+Math.round(total);
+//                                                    float neededM = Float.parseFloat(list.get(getAdapterPosition()).getNeeded_money().toString());
+//                                                    float donatedM = Float.parseFloat(list.get(getAdapterPosition()).getDonated_money().toString());
+//                                                    float total = (donatedM / neededM) * 100;
+//                                                    int newTotal = Integer.parseInt(input.toString())+Math.round(total);
+
+                                                    numberProgressBar.setProgress(numberProgressBar.getProgress()+Integer.parseInt(input.toString()));
 
 
-                                                    ring.setProgress(newTotal);
                                                 }
                                             }).show();
 
@@ -342,6 +387,100 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
                         })
                         .positiveText("choose")
                         .show();
+            }else if(view.getId() == trust.getId()){
+                if (trust.isChecked())
+                voteS = true;
+               // Toast.makeText(context,voteS+"",Toast.LENGTH_LONG).show();
+
+
+            }else if(view.getId() == vote.getId()){
+                SharedPreferences sharedPreferences = context.getSharedPreferences("user_id", 0);
+                final String UID = sharedPreferences.getString("user_id", "");
+                final String postID = list.get(getAdapterPosition()).getPostId().toString();
+                String url = "http://takaful.16mb.com/Api.php";
+
+                if (voteS ){
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                    Toast.makeText(context, response, Toast.LENGTH_LONG).show();
+
+                                    if (response.contains("true")) {
+                                        vote.setClickable(false);
+
+
+
+                                    } else {
+
+                                    }
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            HashMap map = new HashMap();
+                            map.put("VID", UID);
+                            map.put("POSTID", postID);
+                            map.put("TRUST", "1");
+
+                            Log.d("kh", String.valueOf(map));
+                            return map;
+                        }
+                    };
+                    Volley.newRequestQueue(context).add(stringRequest);
+
+                }else if(!voteS){
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                    Toast.makeText(context, response, Toast.LENGTH_LONG).show();
+
+                                    if (response.contains("true")) {
+                                        vote.setClickable(false);
+
+                                    } else {
+
+                                    }
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            HashMap map = new HashMap();
+                            map.put("VID", UID);
+                            map.put("POSTID", postID);
+                            map.put("TRUST", "0");
+
+                            Log.d("kh", String.valueOf(map));
+                            return map;
+                        }
+                    };
+                    Volley.newRequestQueue(context).add(stringRequest);
+                }
+
+
+
+
+
+
+
+            }else if(view.getId() == notTrust.getId()){
+                if (notTrust.isChecked())
+                voteS = false;
             }
         }
     }

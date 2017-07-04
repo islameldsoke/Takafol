@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/accent"
     android:orientation="vertical"
-    >
+    android:layout_width="match_parent"
+    android:background="@color/accent"
+    android:layout_height="wrap_content">
     <com.daimajia.numberprogressbar.NumberProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,51 +80,6 @@
         android:text="Hello to Takafol Hello to Takafol Hello to Takafol Hello to Takafol Hello to Takafol Hello to Takafol Hello to Takafol"
         android:textColor="#8e8686"
         android:textSize="20dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/votS"
-        android:text="لقد قمت بالتصويت علي هذه المشكلة من قبل"
-        android:textColor="@color/blackColor"/>
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:id="@+id/voteGroup"
-
-        >
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="حقيقي"
-            android:textColor="@color/blackColor"
-            android:buttonTint="@color/colorPrimaryDark"
-            android:layoutDirection="rtl"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/trust"
-
-            />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="غير حقيقي"
-            android:textColor="@color/blackColor"
-            android:buttonTint="@color/colorPrimaryDark"
-            android:layoutDirection="rtl"
-            android:id="@+id/notTrust"
-
-            />
-
-    </RadioGroup>
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="صوت"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/vote"
-
-        />
 
 
     <LinearLayout

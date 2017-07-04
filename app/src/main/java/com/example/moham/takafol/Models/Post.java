@@ -41,6 +41,34 @@ public class Post {
     private String user_email;
     private String user_phone;
 
+    public String getTrust_number() {
+        return trust_number;
+    }
+
+    public void setTrust_number(String trust_number) {
+        this.trust_number = trust_number;
+    }
+
+    public String getUntrust_number() {
+        return untrust_number;
+    }
+
+    public void setUntrust_number(String untrust_number) {
+        this.untrust_number = untrust_number;
+    }
+
+    public String getTrust_status() {
+        return trust_status;
+    }
+
+    public void setTrust_status(String trust_status) {
+        this.trust_status = trust_status;
+    }
+
+    private String trust_number;
+    private String untrust_number;
+    private String trust_status;
+
     public String getNeeded_money() {
         return needed_money;
     }
